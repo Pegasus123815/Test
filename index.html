@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Income Stream Overview</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Financial Planning Brokerage Income Overview</h1>
+      <p>Upload one or more Excel files to combine and summarize income streams.</p>
+    </header>
+
+    <section class="card upload-panel">
+      <label for="excelFiles" class="input-label">Excel files (.xlsx, .xls)</label>
+      <input id="excelFiles" type="file" accept=".xlsx,.xls" multiple />
+      <p class="hint">Expected columns: <strong>Income Stream</strong> and <strong>Amount</strong>. Optional: <strong>Advisor</strong>, <strong>Date</strong>.</p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Portfolio Totals</h2>
+        <div class="totals" id="totals"></div>
+      </article>
+
+      <article class="card">
+        <h2>By Income Stream</h2>
+        <div class="table-wrap">
+          <table id="streamTable">
+            <thead>
+              <tr>
+                <th>Income Stream</th>
+                <th>Total Amount</th>
+                <th>Entries</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="card full-width">
+        <h2>Combined Transactions</h2>
+        <div class="table-wrap">
+          <table id="transactionsTable">
+            <thead>
+              <tr>
+                <th>File</th>
+                <th>Income Stream</th>
+                <th>Amount</th>
+                <th>Advisor</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
