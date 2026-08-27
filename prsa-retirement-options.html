@@ -1,0 +1,574 @@
+<title>Your PRSA at 62</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap">
+
+<style>
+/* ============================================================
+   Tokens — light is the base; dark redefined under both scopes
+   ============================================================ */
+:root{
+  color-scheme: light;
+  --plane:#eef1ef;
+  --surface:#fbfcfa;
+  --surface-2:#f4f7f5;
+  --ink:#12201c;
+  --ink-2:#4b5854;
+  --muted:#7d8985;
+  --rule:#dfe4e1;
+  --rule-strong:#c4cdc9;
+
+  --cash:#bd6318;          /* validated categorical slot — money taken as cash */
+  --fund:#00795f;          /* validated categorical slot — money left invested */
+  --deduct:#3a4642;        /* deduction mark (neutral + hatch, never a peer series) */
+  --deduct-hatch:rgba(251,252,250,.55);
+
+  --cash-wash:rgba(189,99,24,.10);
+  --fund-wash:rgba(0,121,95,.10);
+  --shadow:0 1px 2px rgba(18,32,28,.05), 0 8px 24px -18px rgba(18,32,28,.35);
+
+  --sans:"IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --serif:"IBM Plex Serif", ui-serif, Georgia, "Times New Roman", serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --plane:#0b110f;
+    --surface:#161d1b;
+    --surface-2:#1b2422;
+    --ink:#eef3f1;
+    --ink-2:#b6c0bc;
+    --muted:#8b9793;
+    --rule:#28322f;
+    --rule-strong:#3a4643;
+    --cash:#c9762f;
+    --fund:#26a184;
+    --deduct:#6f7a75;
+    --deduct-hatch:rgba(22,29,27,.60);
+    --cash-wash:rgba(201,118,47,.14);
+    --fund-wash:rgba(38,161,132,.14);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --plane:#0b110f;
+  --surface:#161d1b;
+  --surface-2:#1b2422;
+  --ink:#eef3f1;
+  --ink-2:#b6c0bc;
+  --muted:#8b9793;
+  --rule:#28322f;
+  --rule-strong:#3a4643;
+  --cash:#c9762f;
+  --fund:#26a184;
+  --deduct:#6f7a75;
+  --deduct-hatch:rgba(22,29,27,.60);
+  --cash-wash:rgba(201,118,47,.14);
+  --fund-wash:rgba(38,161,132,.14);
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--plane);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.55;
+  margin:0;
+  padding:clamp(16px,4vw,56px) clamp(14px,4vw,32px) 72px;
+  -webkit-font-smoothing:antialiased;
+}
+.sheet{
+  max-width:960px;
+  margin:0 auto;
+  background:var(--surface);
+  border:1px solid var(--rule);
+  border-radius:2px;
+  box-shadow:var(--shadow);
+  padding:clamp(24px,5vw,64px);
+}
+
+/* ---------- type ---------- */
+h1,h2,h3{font-family:var(--serif);font-weight:600;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.08;letter-spacing:-.015em}
+h2{font-size:clamp(20px,2.6vw,25px);line-height:1.2;letter-spacing:-.01em}
+h3{font-size:16px;line-height:1.3;font-weight:600}
+p{margin:0}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+}
+.lede{color:var(--ink-2);max-width:62ch}
+.note{font-size:13.5px;color:var(--muted);max-width:74ch}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+
+/* ---------- masthead ---------- */
+.masthead{display:flex;flex-direction:column;gap:14px;padding-bottom:26px;border-bottom:2px solid var(--ink)}
+.masthead .rule-row{display:flex;flex-wrap:wrap;gap:8px 26px;align-items:baseline}
+.masthead dl{display:flex;flex-wrap:wrap;gap:4px 28px;margin:18px 0 0}
+.masthead dt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.masthead dd{margin:0 0 0 8px;font-weight:600}
+.pair{display:flex;align-items:baseline}
+
+/* ---------- headline figures ---------- */
+.headline{
+  display:grid;gap:1px;background:var(--rule);
+  grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+  border:1px solid var(--rule);margin-top:30px;
+}
+.fig{background:var(--surface);padding:20px 22px;display:flex;flex-direction:column;gap:6px}
+.fig .label{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.fig .value{font-size:clamp(25px,3.4vw,32px);line-height:1.05;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.fig .sub{font-size:13px;color:var(--ink-2)}
+.fig.cash{background:var(--cash-wash)}
+.fig.cash .value{color:var(--cash)}
+.fig.fund{background:var(--fund-wash)}
+.fig.fund .value{color:var(--fund)}
+
+/* ---------- sections ---------- */
+section{margin-top:clamp(38px,5vw,58px)}
+.sec-head{display:flex;flex-direction:column;gap:7px;margin-bottom:22px}
+.sec-head .step{
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:10px;
+}
+.sec-head .step::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+/* ---------- charts ---------- */
+figure{margin:0;display:flex;flex-direction:column;gap:14px}
+figcaption{font-size:13.5px;color:var(--ink-2);max-width:72ch}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center}
+.legend .item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-2)}
+.swatch{width:11px;height:11px;border-radius:2px;flex:none}
+.swatch.hatch{background:
+  repeating-linear-gradient(45deg,var(--deduct) 0 2px,var(--deduct-hatch) 2px 4px);}
+
+/* split bar */
+.splitbar{display:flex;gap:2px;height:60px;width:100%}
+.splitbar .seg{position:relative;border-radius:2px;cursor:default}
+.splitbar .seg:first-child{border-radius:4px 2px 2px 4px}
+.splitbar .seg:last-child{border-radius:2px 4px 4px 2px}
+.seg.cash{background:var(--cash)}
+.seg.fund{background:var(--fund)}
+.splitlabels{display:flex;gap:2px}
+.splitlabels .lab{display:flex;flex-direction:column;gap:2px;padding-right:10px;min-width:0;flex-basis:0}
+.splitlabels .k{font-size:13px;color:var(--ink-2);display:flex;align-items:center;gap:7px}
+.splitlabels .v{font-size:19px;font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.splitlabels .pct{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em}
+
+/* ceiling chart */
+.ceiling{position:relative;padding:34px 0 50px}
+.track{height:52px;width:100%;background:var(--surface-2);border-radius:3px;position:relative;overflow:hidden}
+.ceilbar{position:absolute;inset:0 auto 0 0;display:flex;gap:2px}
+.ceilbar .free{background:var(--cash);border-radius:3px 0 0 3px}
+.ceilbar .over{background:repeating-linear-gradient(45deg,var(--deduct) 0 3px,var(--deduct-hatch) 3px 6px);border-radius:0 3px 3px 0}
+.threshold{position:absolute;top:22px;height:72px;width:0;border-left:2px dashed var(--ink);pointer-events:none}
+.threshold .tag{
+  position:absolute;top:-24px;right:8px;transform:none;white-space:nowrap;
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink);
+}
+.callout .stem{position:absolute;top:88px;height:16px;width:0;border-left:1px solid var(--rule-strong)}
+.callout .txt{position:absolute;top:104px;right:0;font-family:var(--mono);font-size:11px;
+  color:var(--ink-2);letter-spacing:.04em;white-space:nowrap}
+.axis{display:flex;justify-content:space-between;margin-top:8px;font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.05em}
+
+/* calc ledger */
+.calc{border-top:1px solid var(--rule);margin-top:26px}
+.calc .row{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:11px 2px;border-bottom:1px solid var(--rule)}
+.calc .row .k{font-size:14.5px;color:var(--ink-2)}
+.calc .row .v{font-variant-numeric:tabular-nums;font-weight:500;white-space:nowrap}
+.calc .row.minus .v{color:var(--cash)}
+.calc .row.total{border-bottom:2px solid var(--ink);padding-top:14px;padding-bottom:14px}
+.calc .row.total .k{color:var(--ink);font-weight:600;font-size:15.5px}
+.calc .row.total .v{font-size:20px;font-weight:600;letter-spacing:-.01em}
+
+/* income bars */
+.bars{display:flex;flex-direction:column;gap:3px}
+.bars .brow{display:grid;grid-template-columns:minmax(140px,190px) 1fr;gap:16px;align-items:center;padding:5px 0}
+.bars .brow .name{font-size:13.5px;color:var(--ink-2);line-height:1.25}
+.bars .brow .name b{display:block;color:var(--ink);font-weight:600;font-size:14px}
+.plot{display:flex;align-items:center;gap:10px;min-width:0}
+.plot .bar{height:26px;background:var(--fund);border-radius:2px 4px 4px 2px;flex:none}
+.plot .val{font-variant-numeric:tabular-nums;font-weight:600;font-size:14.5px;white-space:nowrap}
+.bars .grouprule{height:1px;background:var(--rule);margin:9px 0}
+.bars .axisrow{display:grid;grid-template-columns:minmax(140px,190px) 1fr;gap:16px;margin-top:4px}
+.bars .ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.05em;border-top:1px solid var(--rule);padding-top:5px}
+
+/* option cards */
+.options{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.opt{background:var(--surface);padding:22px;display:flex;flex-direction:column;gap:12px}
+.opt dl{margin-top:auto}
+.opt .blurb{font-size:13.5px;line-height:1.5;color:var(--ink-2);margin-bottom:4px}
+.opt .top{display:flex;flex-direction:column;gap:5px}
+.opt .kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.opt dl{margin:0;display:flex;flex-direction:column;gap:0}
+.opt dl div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--rule);font-size:13px;align-items:baseline}
+.opt dt{color:var(--muted)}
+.opt dd{margin:0;text-align:right;color:var(--ink-2);font-weight:500}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:3px 9px;border-radius:2px;align-self:flex-start;font-family:var(--mono);letter-spacing:.05em}
+.chip.keeps{background:var(--fund-wash);color:var(--fund)}
+.chip.ends{background:var(--cash-wash);color:var(--cash)}
+
+/* summary table */
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:440px}
+caption{text-align:left;font-size:13.5px;color:var(--muted);padding-bottom:12px}
+th,td{text-align:left;padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);font-size:14.5px}
+thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;border-bottom:1px solid var(--rule-strong)}
+td.n,th.n{text-align:right;padding-right:0;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.emph td{font-weight:600;color:var(--ink);border-bottom:2px solid var(--ink)}
+tbody tr:last-child td{border-bottom:none}
+
+/* discussion list */
+.points{display:grid;gap:1px;background:var(--rule);border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);list-style:none;margin:0;padding:0}
+.points li{background:var(--surface);padding:15px 0;display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start}
+.points .mark{font-family:var(--mono);font-size:11px;color:var(--muted);padding-top:3px;letter-spacing:.06em}
+.points .body{font-size:14.5px;color:var(--ink-2)}
+.points .body b{color:var(--ink);font-weight:600}
+
+/* footer */
+.smallprint{margin-top:52px;padding-top:22px;border-top:1px solid var(--rule)}
+.smallprint p{font-size:12.5px;line-height:1.6;color:var(--muted);max-width:88ch}
+.smallprint p + p{margin-top:10px}
+
+/* tooltip */
+#tip{
+  position:fixed;z-index:50;pointer-events:none;opacity:0;transform:translate(-50%,-120%);
+  background:var(--ink);color:var(--surface);font-size:12.5px;line-height:1.4;
+  padding:7px 10px;border-radius:3px;white-space:nowrap;transition:opacity .12s ease;
+  font-variant-numeric:tabular-nums;box-shadow:0 6px 18px -8px rgba(0,0,0,.5);
+}
+#tip.on{opacity:1}
+[data-tip]{cursor:default}
+[data-tip]:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+@media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
+
+@media print{
+  body{background:#fff;padding:0}
+  .sheet{box-shadow:none;border:none;padding:0;max-width:none}
+  section{break-inside:avoid}
+  #tip{display:none}
+}
+@media (max-width:560px){
+  .bars .brow,.bars .axisrow{grid-template-columns:1fr;gap:6px}
+  .splitlabels{flex-direction:column;gap:14px}
+  .splitlabels .lab{flex:none !important;padding-right:0}
+}
+</style>
+
+<div class="sheet">
+
+  <header class="masthead">
+    <p class="eyebrow">Retirement options illustration &middot; Prepared 27 August 2026</p>
+    <h1>Your PRSA at 62</h1>
+    <p class="lede">What the fund is worth today, what you can take as cash, and the three ways
+      the balance can be used. Every figure below is illustrative and based on Irish pension and
+      tax rules as understood at the date of preparation.</p>
+    <dl>
+      <div class="pair"><dt>PRSA value</dt><dd class="num">&euro;830,859</dd></div>
+      <div class="pair"><dt>Age</dt><dd class="num">62</dd></div>
+      <div class="pair"><dt>Basis</dt><dd>Single PRSA, benefits taken in full</dd></div>
+    </dl>
+  </header>
+
+  <div class="headline">
+    <div class="fig cash">
+      <span class="label">Net cash in hand</span>
+      <span class="value">&euro;206,171.80</span>
+      <span class="sub">After &euro;1,542.95 income tax on the excess over &euro;200,000</span>
+    </div>
+    <div class="fig fund">
+      <span class="label">Still invested for you</span>
+      <span class="value">&euro;623,144.25</span>
+      <span class="sub">The balance, to be used for retirement income</span>
+    </div>
+    <div class="fig">
+      <span class="label">Effective tax on the lump sum</span>
+      <span class="value">0.74%</span>
+      <span class="sub">&euro;1,542.95 tax on &euro;207,714.75 of cash</span>
+    </div>
+  </div>
+
+  <!-- ===================== 1 ===================== -->
+  <section>
+    <div class="sec-head">
+      <span class="step">Step one &mdash; the split</span>
+      <h2>A quarter can come out as cash. Three quarters stays working.</h2>
+      <p class="note">Under current PRSA rules you may take up to 25% of the fund as a retirement
+        lump sum. The remaining 75% must be used to provide retirement income.</p>
+    </div>
+
+    <figure>
+      <div class="splitbar" role="img"
+           aria-label="Fund of 830,859 euro split into a 207,714.75 euro lump sum (25%) and a 623,144.25 euro balance (75%).">
+        <div class="seg cash" style="flex:25" data-tip="Retirement lump sum &middot; &euro;207,714.75 &middot; 25%"></div>
+        <div class="seg fund" style="flex:75" data-tip="Balance for retirement income &middot; &euro;623,144.25 &middot; 75%"></div>
+      </div>
+      <div class="splitlabels">
+        <div class="lab" style="flex:25">
+          <span class="k"><span class="swatch" style="background:var(--cash)"></span>Retirement lump sum</span>
+          <span class="v num">&euro;207,714.75</span>
+          <span class="pct">25% OF FUND</span>
+        </div>
+        <div class="lab" style="flex:75">
+          <span class="k"><span class="swatch" style="background:var(--fund)"></span>Balance for retirement income</span>
+          <span class="v num">&euro;623,144.25</span>
+          <span class="pct">75% OF FUND</span>
+        </div>
+      </div>
+    </figure>
+  </section>
+
+  <!-- ===================== 2 ===================== -->
+  <section>
+    <div class="sec-head">
+      <span class="step">Step two &mdash; the lump sum</span>
+      <h2>Your lump sum sits just &euro;7,714.75 above the tax-free ceiling.</h2>
+      <p class="note">The first &euro;200,000 of retirement lump sums taken in a lifetime is free of tax.
+        Anything between &euro;200,000 and &euro;500,000 is taxed at 20%. Your 25% entitlement is
+        &euro;207,714.75 &mdash; so only the sliver above the line attracts tax.</p>
+    </div>
+
+    <figure>
+      <div class="ceiling">
+        <div class="track" role="img"
+             aria-label="Gross lump sum of 207,714.75 euro against a 200,000 euro tax-free ceiling: 200,000 euro tax free, 7,714.75 euro taxable at 20 percent.">
+          <div class="ceilbar" style="width:94.416%">
+            <div class="free" style="flex:200000" data-tip="Tax free &middot; &euro;200,000.00"></div>
+            <div class="over" style="flex:7714.75" data-tip="Taxable at 20% &middot; &euro;7,714.75"></div>
+          </div>
+        </div>
+        <div class="threshold" style="left:90.909%"><span class="tag">&euro;200,000 TAX-FREE CEILING &rarr;</span></div>
+        <div class="callout">
+          <div class="stem" style="left:92.66%"></div>
+          <div class="txt">&euro;7,714.75 taxable at 20%</div>
+        </div>
+      </div>
+      <div class="axis" aria-hidden="true">
+        <span>&euro;0</span><span>&euro;55k</span><span>&euro;110k</span><span>&euro;165k</span><span>&euro;220k</span>
+      </div>
+      <div class="legend">
+        <span class="item"><span class="swatch" style="background:var(--cash)"></span>Tax free &mdash; &euro;200,000.00</span>
+        <span class="item"><span class="swatch hatch"></span>Taxable at 20% &mdash; &euro;7,714.75</span>
+      </div>
+
+      <div class="calc">
+        <div class="row"><span class="k">Gross retirement lump sum (25% of &euro;830,859)</span><span class="v num">&euro;207,714.75</span></div>
+        <div class="row"><span class="k">Tax-free element (lifetime limit &euro;200,000)</span><span class="v num">&euro;200,000.00</span></div>
+        <div class="row"><span class="k">Element taxable at the standard rate</span><span class="v num">&euro;7,714.75</span></div>
+        <div class="row minus"><span class="k">Less income tax at 20%</span><span class="v num">&minus;&euro;1,542.95</span></div>
+        <div class="row total"><span class="k">Net lump sum paid to you</span><span class="v num">&euro;206,171.80</span></div>
+      </div>
+      <figcaption>The &euro;200,000 figure is a <em>lifetime</em> limit across all pension arrangements.
+        These figures assume no retirement lump sum has been taken from any earlier scheme. If one has,
+        more of this lump sum becomes taxable.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ===================== 3 ===================== -->
+  <section>
+    <div class="sec-head">
+      <span class="step">Step three &mdash; the balance</span>
+      <h2>Three routes for the remaining &euro;623,144.25.</h2>
+      <p class="note">These are not mutually exclusive &mdash; the balance can be split between an ARF
+        and an annuity, and the decision does not have to be made all at once.</p>
+    </div>
+
+    <div class="options">
+      <article class="opt">
+        <div class="top">
+          <span class="kicker">Route A</span>
+          <h3>Approved Retirement Fund</h3>
+        </div>
+        <span class="chip keeps">STAYS INVESTED</span>
+        <p class="blurb">Your money stays invested in your own name and you draw from it as you
+          choose. Whatever is left when you die passes to your estate.</p>
+        <dl>
+          <div><dt>Amount</dt><dd class="num">&euro;623,144.25</dd></div>
+          <div><dt>Income</dt><dd>Flexible</dd></div>
+          <div><dt>Guaranteed</dt><dd>No</dd></div>
+          <div><dt>Capital access</dt><dd>Any time</dd></div>
+          <div><dt>Tax</dt><dd>PAYE on withdrawals</dd></div>
+          <div><dt>On death</dt><dd>Passes to estate</dd></div>
+        </dl>
+      </article>
+
+      <article class="opt">
+        <div class="top">
+          <span class="kicker">Route B</span>
+          <h3>Annuity</h3>
+        </div>
+        <span class="chip keeps">GUARANTEED FOR LIFE</span>
+        <p class="blurb">You exchange the fund for an income paid for the rest of your life,
+          however long that is. Certainty, in return for giving up the capital.</p>
+        <dl>
+          <div><dt>Amount</dt><dd class="num">&euro;623,144.25</dd></div>
+          <div><dt>Income</dt><dd>Fixed, for life</dd></div>
+          <div><dt>Guaranteed</dt><dd>Yes</dd></div>
+          <div><dt>Capital access</dt><dd>None</dd></div>
+          <div><dt>Tax</dt><dd>PAYE on income</dd></div>
+          <div><dt>On death</dt><dd>Only if optioned</dd></div>
+        </dl>
+      </article>
+
+      <article class="opt">
+        <div class="top">
+          <span class="kicker">Route C</span>
+          <h3>Take it as taxable cash</h3>
+        </div>
+        <span class="chip ends">FUND ENDS</span>
+        <p class="blurb">The balance is paid out in one go and taxed as income in that year,
+          pushing almost all of it to the top marginal rate &mdash; roughly &euro;299,000 would
+          reach you.</p>
+        <dl>
+          <div><dt>Amount</dt><dd class="num">&euro;623,144.25</dd></div>
+          <div><dt>Income</dt><dd>None afterwards</dd></div>
+          <div><dt>Guaranteed</dt><dd>Not applicable</dd></div>
+          <div><dt>Capital access</dt><dd>Immediate</dd></div>
+          <div><dt>Tax</dt><dd>Up to c.52%</dd></div>
+          <div><dt>On death</dt><dd>Nothing remains</dd></div>
+        </dl>
+      </article>
+    </div>
+
+    <figure style="margin-top:40px">
+      <div class="sec-head" style="margin-bottom:14px">
+        <span class="step">Indicative gross annual income</span>
+        <h3 style="font-family:var(--serif);font-size:19px">What &euro;623,144.25 might produce each year</h3>
+      </div>
+      <div class="bars" role="img"
+           aria-label="Indicative gross annual income from 623,144 euro: ARF at 4 percent 24,926 euro; ARF at 5 percent 31,157 euro; annuity at an illustrative 4.5 percent 28,041 euro; annuity at an illustrative 5.0 percent 31,157 euro.">
+        <div class="brow">
+          <span class="name"><b>ARF &mdash; 4%</b>the minimum drawdown from age 61</span>
+          <span class="plot"><span class="bar" style="width:62.3%" data-tip="ARF at 4% &middot; &euro;24,925.77 a year"></span><span class="val num">&euro;24,926</span></span>
+        </div>
+        <div class="brow">
+          <span class="name"><b>ARF &mdash; 5%</b>a higher chosen withdrawal</span>
+          <span class="plot"><span class="bar" style="width:77.9%" data-tip="ARF at 5% &middot; &euro;31,157.21 a year"></span><span class="val num">&euro;31,157</span></span>
+        </div>
+        <div class="grouprule"></div>
+        <div class="brow">
+          <span class="name"><b>Annuity &mdash; 4.5%</b>illustrative rate, single life, level</span>
+          <span class="plot"><span class="bar" style="width:70.1%" data-tip="Annuity at an illustrative 4.5% &middot; &euro;28,041.49 a year"></span><span class="val num">&euro;28,041</span></span>
+        </div>
+        <div class="brow">
+          <span class="name"><b>Annuity &mdash; 5.0%</b>illustrative rate, single life, level</span>
+          <span class="plot"><span class="bar" style="width:77.9%" data-tip="Annuity at an illustrative 5.0% &middot; &euro;31,157.21 a year"></span><span class="val num">&euro;31,157</span></span>
+        </div>
+        <div class="axisrow" aria-hidden="true">
+          <span></span>
+          <span class="ticks"><span>&euro;0</span><span>&euro;10k</span><span>&euro;20k</span><span>&euro;30k</span><span>&euro;40k</span></span>
+        </div>
+      </div>
+      <figcaption>All figures are gross, before income tax, USC and PRSI. ARF withdrawals are not
+        guaranteed &mdash; they depend on how the fund performs and how much you take, and drawing 5%
+        a year will erode the capital if returns fall short. Annuity rates move daily and depend on
+        your health, the options chosen and the insurer; the rates shown are illustrative and are not
+        a quotation.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ===================== 4 ===================== -->
+  <section>
+    <div class="sec-head">
+      <span class="step">Summary</span>
+      <h2>The illustrative position at retirement.</h2>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <caption>Based on a PRSA value of &euro;830,859 with benefits taken in full at age 62.</caption>
+        <thead>
+          <tr><th scope="col">Item</th><th scope="col" class="n">Amount</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Current PRSA value</td><td class="n num">&euro;830,859.00</td></tr>
+          <tr><td>Gross retirement lump sum (25%)</td><td class="n num">&euro;207,714.75</td></tr>
+          <tr><td>&mdash; tax-free element</td><td class="n num">&euro;200,000.00</td></tr>
+          <tr><td>&mdash; taxable element</td><td class="n num">&euro;7,714.75</td></tr>
+          <tr><td>Income tax at 20% on the taxable element</td><td class="n num">&minus;&euro;1,542.95</td></tr>
+          <tr class="emph"><td>Net lump sum received</td><td class="n num">&euro;206,171.80</td></tr>
+          <tr class="emph"><td>Balance for ARF and/or annuity</td><td class="n num">&euro;623,144.25</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== 5 ===================== -->
+  <section>
+    <div class="sec-head">
+      <span class="step">Before you decide</span>
+      <h2>Five things worth talking through.</h2>
+    </div>
+    <ul class="points">
+      <li><span class="mark">01</span><span class="body"><b>You do not have to draw benefits now.</b>
+        A PRSA can generally be left until age 75. Deferring keeps the fund invested, but it also
+        keeps it exposed to markets.</span></li>
+      <li><span class="mark">02</span><span class="body"><b>The &euro;200,000 limit is a lifetime one.</b>
+        If any earlier scheme has already paid you a retirement lump sum, more of this one becomes
+        taxable &mdash; we should confirm your full pension history before anything is drawn.</span></li>
+      <li><span class="mark">03</span><span class="body"><b>ARF and annuity is not either/or.</b>
+        Securing part of the balance as guaranteed income and leaving the rest invested is often the
+        more comfortable answer than choosing one route for the whole &euro;623,144.25.</span></li>
+      <li><span class="mark">04</span><span class="body"><b>The 4% minimum drawdown applies whether you
+        need the money or not.</b> From the year you turn 61 an ARF is treated as paying out at least
+        4% a year and taxed accordingly &mdash; currently &euro;24,925.77 on this balance, rising to 5%
+        from age 71.</span></li>
+      <li><span class="mark">05</span><span class="body"><b>Route C is expensive.</b> Taking the whole
+        balance as cash would put nearly all of it at the top marginal rate in a single tax year, and
+        it ends the pension entirely.</span></li>
+    </ul>
+  </section>
+
+  <footer class="smallprint">
+    <p class="eyebrow" style="display:block;margin-bottom:10px">Important information</p>
+    <p>The figures shown are for illustrative purposes only and are based on Irish pension and taxation
+      rules as understood at the date of preparation. Pension, taxation and Revenue rules may change and
+      may affect both the options available and the tax treatment applying when benefits are actually
+      taken. All limits, rates and thresholds should be confirmed with your provider and with Revenue
+      before you act.</p>
+    <p>The value of investments can fall as well as rise and you may get back less than the amount
+      invested. Past performance is not a reliable guide to future performance. Income from an Approved
+      Retirement Fund is not guaranteed; if withdrawals exceed investment returns the fund will reduce
+      and may be exhausted during your lifetime. Annuity rates shown are illustrative only, are not a
+      quotation, and vary by insurer, by the options selected and from day to day.</p>
+    <p>Lump sum figures assume no previous retirement lump sum has used any part of the &euro;200,000
+      lifetime tax-free limit. The indicative net figure shown for taking the balance as taxable cash
+      assumes a combined marginal rate of approximately 52% (income tax, USC and PRSI) and takes no
+      account of your personal credits, rate bands or other income in the year.</p>
+    <p>Any retirement decision should be based on your own circumstances, objectives, risk profile and
+      the rules applying at the time benefits are taken. This document is an illustration and does not
+      constitute financial advice or a recommendation.</p>
+  </footer>
+</div>
+
+<div id="tip" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var tip = document.getElementById('tip');
+  function show(el, x, y) {
+    tip.innerHTML = el.getAttribute('data-tip');
+    tip.classList.add('on');
+    tip.style.left = x + 'px';
+    tip.style.top = y + 'px';
+  }
+  function hide() { tip.classList.remove('on'); }
+
+  document.querySelectorAll('[data-tip]').forEach(function (el) {
+    el.setAttribute('tabindex', '0');
+    el.addEventListener('mousemove', function (e) { show(el, e.clientX, e.clientY - 6); });
+    el.addEventListener('mouseleave', hide);
+    el.addEventListener('focus', function () {
+      var r = el.getBoundingClientRect();
+      show(el, r.left + r.width / 2, r.top - 2);
+    });
+    el.addEventListener('blur', hide);
+  });
+  window.addEventListener('scroll', hide, { passive: true });
+})();
+</script>
